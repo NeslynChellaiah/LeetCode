@@ -1,0 +1,7 @@
+class Solution:
+    def queryString(self, s: str, n: int) -> bool:
+        while(n):
+            if(bin(n).replace("0b", "") not in s):
+                return False
+            n-=1
+        return True
