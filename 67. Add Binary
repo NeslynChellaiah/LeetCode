@@ -1,0 +1,12 @@
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        num1, num2 = 0, 0
+        for i in range (len(a)-1, -1, -1):
+            num1 += (int(a[i]) * pow(2, len(a)-i-1))
+        
+        for i in range (len(b)-1, -1, -1):
+            num2 += (int(b[i]) * pow(2, len(b)-i-1))
+            
+        num = num1 + num2
+
+        return (bin(num)[2:])
