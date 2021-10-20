@@ -1,0 +1,13 @@
+class Solution:
+    def reverseWords(self, s: str) -> str:
+        out = ""
+        l = len(s) - 1
+        temp = ""
+        while (l >= 0):
+            if(s[l] != " " or (l == 0 and s[l] != " ")):
+                temp = s[l] + temp
+            if((s[l] == " " or l == 0) and temp != ""):
+                out += temp + " "
+                temp = ""
+            l -= 1
+        return (out[:len(out) - 1])
