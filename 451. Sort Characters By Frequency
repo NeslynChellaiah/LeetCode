@@ -1,0 +1,9 @@
+class Solution:
+    def frequencySort(self, s: str) -> str:
+        obj = {}
+        for i in s:
+            if i in obj:
+                obj[i] += 1
+            else:
+                obj[i] = 1
+        return "".join(k * v for k, v in {k: obj[k] for k in sorted(obj, key=obj.get, reverse=True)}.items())
