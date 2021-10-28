@@ -1,0 +1,17 @@
+class Solution:
+    def findMaxLength(self, nums: List[int]) -> int:
+        obj = {}
+        count = 0
+        out = 0
+        for i in range(len(nums)):
+            if(nums[i] == 1):
+                count += 1
+            else:
+                count -= 1
+            if (count not in obj):
+                obj[count] = i
+            else:
+                out = max(out, i - obj[count])
+            if (count == 0):
+                out = max(out, i+1)
+        return out
