@@ -1,0 +1,8 @@
+class Solution:
+    def minStartValue(self, nums: List[int]) -> int:
+        m = 0
+        t = 0
+        for i in nums:
+            t += i
+            m = min(m, t)
+        return -m+1
