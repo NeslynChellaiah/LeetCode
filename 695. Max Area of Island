@@ -1,0 +1,16 @@
+class Solution:
+    def maxAreaOfIsland(self, grid: List[List[int]]) -> int:
+        rows = len(grid)
+        cols = len(grid[0])
+        out = 0
+        def search(i, j):
+            if(i<0 or j<0 or i>=rows or j>=cols or grid[i][j] == 0):
+                return 0
+            grid[i][j] = 0
+            return (1+search(i+1, j)+search(i-1, j)+search(i, j+1)+search(i, j-1))
+        for i in range(0, rows):
+            for j in range(0, cols):
+                if(grid[i][j] == 1):
+                    out = max(out, search(i, j))
+                    
+        return out
