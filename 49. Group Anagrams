@@ -1,0 +1,13 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        store = {}
+        for i in strs:
+            temp = [0] * 26
+            for char in i:
+                temp[ord(char) % 97] += 1
+            temp = str(temp)
+            if temp in store:
+                store[temp].append(i) 
+            else:
+                store[temp] = [i]        
+        return store.values()
