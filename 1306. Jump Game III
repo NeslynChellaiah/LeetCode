@@ -1,0 +1,14 @@
+class Solution:
+    def canReach(self, arr: List[int], start: int) -> bool:
+        self.visited = {}
+        
+        def find(i):
+            if(i in self.visited or i >= len(arr) or i < 0):
+                return False
+            if(arr[i] == 0):
+                return True
+            
+            self.visited[i] = True
+            return find(i-arr[i]) or find(i+arr[i])
+        
+        return find(start)
