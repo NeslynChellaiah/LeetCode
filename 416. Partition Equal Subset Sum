@@ -1,0 +1,21 @@
+class Solution:
+    def canPartition(self, nums: List[int]) -> bool:
+        total = sum(nums)
+        
+        if(total%2 != 0):
+            return False
+        
+        half = total // 2
+        s = set()
+        s.add(0)
+        
+        for i in range(len(nums)):
+            temp = set()
+            for j in s:
+                if(nums[i]+j == half):
+                    return True
+                temp.add(nums[i]+j)
+                temp.add(j)
+            s = temp
+        
+        return False
