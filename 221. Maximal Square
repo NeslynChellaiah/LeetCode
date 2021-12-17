@@ -1,0 +1,22 @@
+class Solution:
+    def maximalSquare(self, matrix: List[List[str]]) -> int:
+        
+        ROWS, COLS = len(matrix), len(matrix[0])
+        m = {}
+
+        def search(r, c):
+            if(r >= ROWS or c >= COLS):
+                return 0
+            
+            if (r, c) not in m:
+                down = search(r, c+1)
+                right = search(r+1, c)
+                diag = search(r+1, c+1)
+                m[(r,c)] = 0
+                if(matrix[r][c] == '1'):
+                    m[(r,c)] = 1 + min(down, right, diag)
+            
+            return m[(r,c)]
+                    
+        search(0,0)
+        return max(m.values()) ** 2
