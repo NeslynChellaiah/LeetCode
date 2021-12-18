@@ -1,0 +1,15 @@
+class Solution:
+    def jump(self, nums: List[int]) -> int:
+        l=0
+        r=0
+        out = 0
+        
+        while r < len(nums)-1:
+            m = 0
+            for i in range(l, r+1):
+                m = max(m, i + nums[i])
+            l = r+1
+            r = m
+            out += 1
+        
+        return out
