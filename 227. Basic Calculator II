@@ -1,0 +1,25 @@
+class Solution:
+    def calculate(self, s: str) -> int:
+        stack = []
+        cur = ""
+        op = "+"
+        def help():
+            if(op=="+"):
+                stack.append(int(cur))
+            if(op=="-"):
+                stack.append(-int(cur))
+            if(op=="/"):
+                temp = abs(stack.pop())//int(cur) if stack[-1] >= 0 else -(abs(stack.pop())//int(cur))
+                stack.append(temp)
+            if(op=="*"):
+                stack.append(stack.pop() * int(cur))
+        for i in s:
+            if(i.isdigit()):
+                cur += i
+            if i in "+-/*":
+                help()
+                cur = ""
+                op = i
+        help()
+        print(stack)
+        return sum(stack)
