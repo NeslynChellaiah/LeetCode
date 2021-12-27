@@ -1,0 +1,7 @@
+class Solution:
+    def findComplement(self, num: int) -> int:
+        bi = ""
+        while num>0:
+            bi = ('0' if num%2 == 1 else '1')+bi
+            num = num // 2
+        return(int(bi,2))
