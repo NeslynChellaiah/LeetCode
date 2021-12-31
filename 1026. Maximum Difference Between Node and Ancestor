@@ -1,0 +1,18 @@
+# class TreeNode:
+#     def __init__(self, val=0, left=None, right=None):
+#         self.val = val
+#         self.left = left
+#         self.right = right
+class Solution:
+    def maxAncestorDiff(self, root: Optional[TreeNode]) -> int:
+        if not root:
+            return 0
+        def help(root, Max, Min):
+            if not root:
+                return Max-Min
+            Max = max(Max, root.val)
+            Min = min(Min, root.val)
+            left = help(root.left, Max, Min)
+            right = help(root.right, Max, Min)
+            return max(left, right)
+        return help(root, root.val, root.val)
