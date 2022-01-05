@@ -1,0 +1,24 @@
+class Solution:
+    def partition(self, s: str) -> List[List[str]]:
+        def checkPalindrome(s, i, j):
+            while i<j:
+                if(s[i] != s[j]):
+                    return False
+                i += 1
+                j -= 1
+            return True
+        
+        out = []
+        part = []
+        
+        def help(i):
+            if(i>=len(s)):
+                out.append(part.copy())
+                return
+            for j in range(i, len(s)):
+                if(checkPalindrome(s, i, j)):
+                    part.append(s[i:j+1])
+                    help(j+1)
+                    part.pop()
+        help(0)
+        return out
