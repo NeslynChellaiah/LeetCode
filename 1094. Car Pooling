@@ -1,0 +1,16 @@
+class Solution:
+    def carPooling(self, trips: List[List[int]], capacity: int) -> bool:
+        
+        totalP = defaultdict(int)
+        
+        for trip in trips:
+            p = trip[0]
+            f = trip[1]
+            t = trip[2]
+            
+            for i in range (f, t):
+                totalP[i] += p
+                if(totalP[i] > capacity):
+                    return False
+            
+        return True
