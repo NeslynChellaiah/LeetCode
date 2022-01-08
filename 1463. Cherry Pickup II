@@ -1,0 +1,20 @@
+class Solution:
+    def cherryPickup(self, grid: List[List[int]]) -> int:
+        r = len(grid)
+        c = len(grid[0])
+        
+        @lru_cache(None)
+        def dfs(row, robot1, robot2):
+            if robot1 < 0 or robot1 >= c or robot2 < 0 or robot2 >= c or row >= r:
+                return 0
+            
+            res = 0
+            res += grid[row][robot1]
+            if robot1 != robot2:
+                res += grid[row][robot2]
+            
+            res += max(dfs(row+1, i, j) for i in range(robot1-1, robot1+2) for j in range(robot2-1, robot2+2))
+                
+            return res
+        
+        return dfs(0,0,c-1)
