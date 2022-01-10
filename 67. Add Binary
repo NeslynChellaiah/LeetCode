@@ -10,3 +10,36 @@ class Solution:
         num = num1 + num2
 
         return (bin(num)[2:])
+        
+        
+        
+////////////////////////////////
+
+
+class Solution:
+    def addBinary(self, a: str, b: str) -> str:
+        a = a[::-1]
+        b = b[::-1]
+        la = len(a)
+        lb = len(b)
+        r = max(la, lb)
+        carry = 0
+        out = ""
+        
+        for i in range(r):
+            da = int(a[i]) if i < la else 0
+            db = int(b[i]) if i < lb else 0
+            
+            total = da + db + carry
+            carry = total // 2
+            total = total % 2
+            out = str(total) + out
+            
+        if carry:
+            out = "1"+out
+            
+        return out
+            
+            
+            
+
