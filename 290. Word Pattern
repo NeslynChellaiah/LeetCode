@@ -1,0 +1,15 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        sarr = s.split(" ")
+        d = {}
+        
+        if(len(pattern) != len(sarr) or len(set(pattern)) != len(set(sarr))):
+            return False
+        
+        for i in range(len(pattern)):
+            d[pattern[i]] = sarr[i]   
+        flag = ""
+        for i in pattern:
+            flag += (d[i] + " ")
+        
+        return flag[:-1] == s
