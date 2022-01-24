@@ -1,0 +1,29 @@
+class Solution:
+    def detectCapitalUse(self, word: str) -> bool:
+        n = len(word)
+        
+        if n == 1:
+            return True
+        
+        match1, match2 = True, True
+        
+        for i in word:
+            if(i.isupper()):
+                match1 = False
+        
+        if match1:
+            return True
+        
+        for i in word:
+            if(not i.isupper()):
+                match2 = False
+                
+        if match2:
+            return True
+        
+        if not word[0].isupper():
+            return False
+        for i in range(1, n):
+            if word[i].isupper():
+                return False
+        return True
