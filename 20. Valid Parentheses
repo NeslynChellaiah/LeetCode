@@ -1,0 +1,13 @@
+class Solution:
+    def isValid(self, string: str) -> bool:
+        s = deque([])
+        for i in string:
+            if i == "(" or i == "{" or i == "[":
+                s.append(i)
+            elif s:
+                temp = s.pop()
+                if(i == ")" and temp != "(") or (i == "}" and temp != "{") or (i == "]" and temp != "["):
+                    return False
+            else:
+                return False
+        return True if not s else False
