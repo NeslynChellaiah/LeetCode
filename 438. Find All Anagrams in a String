@@ -1,0 +1,28 @@
+class Solution:
+    def findAnagrams(self, s: str, p: str) -> List[int]:
+        if(len(s)<len(p)):
+            return []
+        out = []
+        sarr = [0]*26
+        parr = [0]*26
+        for i in range(len(p)):
+            ptemp = ord(p[i]) - 97
+            parr[ptemp] += 1
+            stemp = ord(s[i]) - 97
+            sarr[stemp] += 1
+            
+        if(parr == sarr):
+            out.append(0)
+            
+        l = 0
+        
+        for i in range(len(p), len(s)):
+            temp = ord(s[l]) - 97
+            sarr[temp] -= 1
+            temp = ord(s[i]) - 97
+            sarr[temp] += 1
+            l += 1
+            if(sarr == parr):
+                out.append(l)
+            
+        return out
