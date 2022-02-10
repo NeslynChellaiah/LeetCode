@@ -1,0 +1,14 @@
+class Solution:
+    def subarraySum(self, nums: List[int], k: int) -> int:
+        out = 0
+        count = 0
+        obj = {0:1}
+        
+        for i in nums:
+            count += i
+            diff = count - k
+            
+            out += obj.get(diff, 0)
+            obj[count] = 1 + obj.get(count, 0)
+        
+        return out
