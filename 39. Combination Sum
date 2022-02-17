@@ -1,10 +1,18 @@
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        self.ans = []                                   
-        def traverse(candid, arr,sm):
-            if sm == target: self.ans.append(arr)
-            if sm >= target: return
-            for i in range(len(candid)):
-                traverse(candid[i:], arr + [candid[i]], sm+candid[i])
-        traverse(candidates,[], 0)
-        return self.ans
+        out = []
+        
+        def help(i, cur, t):
+            if t == target:
+                out.append(cur.copy())
+                return
+            if t > target or i >= len(candidates):
+                return
+            
+            cur.append(candidates[i])
+            help(i, cur, t+candidates[i])
+            cur.pop()
+            help(i+1, cur, t)
+            
+        help(0, [], 0)
+        return out
