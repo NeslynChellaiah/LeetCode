@@ -1,0 +1,29 @@
+class Solution:
+    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
+        obj = {i: [] for i in range (numCourses)}
+        
+        for i, j in prerequisites:
+            obj[i].append(j)
+            
+        visited = set()
+        
+        def search(c):
+            if c in visited:
+                return False
+            if obj[c] == []:
+                return True
+            
+            visited.add(c)
+            
+            for i in obj[c]:
+                if not search(i):
+                    return False
+            visited.remove(c)
+            obj[c] = []
+            return True
+        
+    
+        for i in range(numCourses):
+            if not search(i): return False
+
+        return True
