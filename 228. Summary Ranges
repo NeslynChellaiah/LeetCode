@@ -1,0 +1,16 @@
+class Solution:
+    def summaryRanges(self, nums: List[int]) -> List[str]:
+        if not nums:
+            return nums
+        out = []
+        s, e = 0, 0
+        for i in range (len(nums)):
+            if(i<len(nums)-1 and nums[i+1] == nums[i]+1):
+                e = i+1
+            else:
+                if nums[s] == nums[e]:
+                    out.append(str(nums[s]))
+                else:
+                    out.append(str(nums[s])+"->"+str(nums[e]))
+                s, e = i+1, i+1
+        return out
