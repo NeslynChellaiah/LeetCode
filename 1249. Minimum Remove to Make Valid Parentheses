@@ -1,0 +1,17 @@
+class Solution:
+    def minRemoveToMakeValid(self, a: str) -> str:
+        arr = list(a)
+        s = deque([])
+        for i in range (len(a)):
+            if arr[i] == "(":
+                s.append(i)
+            elif arr[i] == ")":
+                if len(s) > 0:
+                    s.pop()
+                else:
+                    arr[i] = ""
+        
+        for i in s:
+            arr[i] = ""
+            
+        return "".join(arr)
