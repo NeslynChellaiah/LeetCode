@@ -1,0 +1,13 @@
+class Solution:
+    def partitionLabels(self, s: str) -> List[int]:
+        obj = {}
+        for i, c in enumerate(s):
+            obj[c] = i
+        j = anchor = 0
+        out = []
+        for i, c in enumerate(s):
+            j = max(j, obj[c])
+            if(i == j):
+                out.append(i-anchor+1)
+                anchor = i + 1
+        return out
