@@ -1,0 +1,10 @@
+class Solution:
+    def brokenCalc(self, s: int, t: int) -> int:
+        out = 0
+        while t > s:
+            out += 1
+            if t % 2:
+                t += 1
+            else:
+                t //= 2
+        return out + s - t
