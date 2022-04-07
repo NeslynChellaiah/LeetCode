@@ -1,0 +1,9 @@
+class Solution:
+    def lastStoneWeight(self, s: List[int]) -> int:
+        while len(s) >= 2:
+            s.sort()
+            b = s.pop()
+            a = s.pop()
+            if (b>a):
+                s.append(b-a)
+        return s.pop() if len(s) else 0
