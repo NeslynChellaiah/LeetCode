@@ -1,0 +1,17 @@
+class Solution:
+    def countSubstrings(self, s: str) -> int:
+        l = len(s)
+        out = 0
+        
+        def isPalindrome(i, j):
+            count = 0
+            while i >= 0 and j < l and s[i] == s[j]:
+                i -= 1
+                j += 1 
+                count += 1
+            return count
+        
+        for i in range(l):
+            out += (isPalindrome(i,i) + isPalindrome(i, i+1))
+            
+        return out
