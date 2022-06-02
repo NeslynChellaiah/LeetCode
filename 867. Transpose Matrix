@@ -1,0 +1,12 @@
+class Solution:
+    def transpose(self, m: List[List[int]]) -> List[List[int]]:
+        row, col = len(m), len(m[0])
+        out = [] * col
+        
+        for j in range(col):
+            temp = []
+            for i in range(row):
+                temp.append(m[i][j])
+            out.append(temp)
+            
+        return out
