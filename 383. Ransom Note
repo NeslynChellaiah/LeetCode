@@ -1,0 +1,13 @@
+class Solution:
+    def canConstruct(self, ransomNote: str, magazine: str) -> bool:
+        marr = [0]*26
+
+        for c in magazine:
+            marr[ord(c)-97] += 1
+        
+        for c in ransomNote:
+            if(marr[ord(c)-97] > 0):
+                marr[ord(c)-97] -= 1
+            else:
+                return False
+        return True
